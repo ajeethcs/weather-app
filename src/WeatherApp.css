@@ -1,0 +1,28 @@
+.containerMain {
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* box-sizing: ; */
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 30vh; */
+    background-color: azure;
+    height: 300px;
+    width: 400px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    /* border: 2px solid green; */
+}
+
+.header {
+    /* border: 1px solid red; */
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    color: #43aefc;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid lightgray;
+}

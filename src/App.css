@@ -1,0 +1,10 @@
+.container {
+
+  height: 100vh;
+  /* border: 2px solid red; */
+  padding-top: 30vh;
+  background-color: #43aefc;
+  box-sizing: border-box;
+
+
+}
