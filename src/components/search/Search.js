@@ -35,29 +35,17 @@ function Search() {
       )
       .then((resp) => {
         setWeatherData(resp);
+        console.log(resp.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  //   const getCoordinates = async (city) => {
-  //     setTimeout(
-  //       () =>
-  //         axios
-  //           .get(
-  //             ` http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=bd25513d09224df4078ad37187738f68`
-  //           )
-  //           .then((resp) => {
-  //             setSuggestions(resp);
-  //             console.log("coordinates:", resp);
-  //           })
-  //           .catch((err) => {
-  //             console.log(err);
-  //           }),
-  //       2000
-  //     );
-  //   };
+  const handleOptionClick = (lat, lon) => {
+    getWeatherData(lat, lon);
+  };
+
   useEffect(() => {
     setSuggestions([]);
     const delayDebounceFn = setTimeout(() => {
@@ -72,7 +60,7 @@ function Search() {
         .catch((err) => {
           console.log(err);
         });
-    }, 3000);
+    }, 500);
 
     return () => clearTimeout(delayDebounceFn);
   }, [location]);
@@ -97,12 +85,10 @@ function Search() {
       </form>
       {suggestions.length !== 0 && location.length !== 0 ? (
         <div className="suggestions">
-          {suggestions.map((city) => {
-            {
-              console.log("da", city.state);
-            }
-          })}
-          {/* <Suggestions suggestions={suggestions} /> */}
+          <Suggestions
+            handleOptionClick={handleOptionClick}
+            suggestion={suggestions}
+          />
         </div>
       ) : null}
       <div style={{ color: "rgb(209,209,209)" }} className="dividerLine">

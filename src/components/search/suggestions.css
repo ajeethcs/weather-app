@@ -1,0 +1,13 @@
+.option {
+    background-color: azure;
+    width: 300px;
+    border: 1px solid lightgray;
+    color: rgb(176, 176, 176);
+    cursor: pointer;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.option:hover {
+    color: rgb(62, 62, 62);
+}

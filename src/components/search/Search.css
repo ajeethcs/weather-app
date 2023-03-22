@@ -74,10 +74,12 @@
 }
 
 .suggestions {
-    background-color: grey;
-    width: 300px;
+    box-sizing: border-box;
+    /* background-color: azure; */
+    min-width: 300px;
     position: absolute;
     z-index: 10;
     top: 94px;
-    /* display: none; */
+    height: 153px;
+    padding: 10px;
 }
