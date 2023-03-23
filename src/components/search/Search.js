@@ -48,7 +48,7 @@ function Search() {
       const delayDebounceFn = setTimeout(() => {
         axios
           .get(
-            ` http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=bd25513d09224df4078ad37187738f68`
+            `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=bd25513d09224df4078ad37187738f68`
           )
           .then((resp) => {
             setSuggestions(resp.data);
