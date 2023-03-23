@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Search.css";
 import Suggestions from "./Suggestions";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [location, setLocation] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
 
   const handleGetCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -36,6 +38,7 @@ function Search() {
       .then((resp) => {
         setWeatherData(resp);
         console.log(resp.data);
+        navigate("/currentweather", { state: { temp: resp.data } });
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +70,7 @@ function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(location);
+    // console.log(location);
   };
 
   return (

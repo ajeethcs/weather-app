@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./suggestions.css";
 
 function Suggestions(props) {
@@ -36,14 +37,18 @@ function Suggestions(props) {
             key={key}
             onClick={(e) => handleClick(e, key)}
           >
-            {obj?.name}, {obj?.state}, {obj?.country}
-            <div
-              className="line"
-              style={{
-                // borderBottom: "1px solid lightGray",
-                marginBottom: "2px",
-              }}
-            ></div>
+            <Link
+              style={{ textDecoration: "none", color: "rgb(176, 176, 176)" }}
+            >
+              {obj?.name}, {obj?.state}, {obj?.country}
+              <div
+                className="line"
+                style={{
+                  // borderBottom: "1px solid lightGray",
+                  marginBottom: "2px",
+                }}
+              ></div>
+            </Link>
           </div>
         );
       })}
