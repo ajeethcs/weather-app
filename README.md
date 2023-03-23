@@ -1,5 +1,6 @@
 Weather App
 -----------
+Uses openWeather API to show weather conditions of any location
 
 Live project link:  https://weather-app109.web.app/
 
