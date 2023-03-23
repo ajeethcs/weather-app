@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./style.css";
 import locationIcon from "../../assets/locationLogo.svg";
@@ -9,9 +8,6 @@ import back from "../../assets/back.svg";
 function WeatherCard() {
   const navigate = useNavigate();
   const location = useLocation();
-  useEffect(() => {
-    console.log("data", location.state.temp);
-  }, []);
 
   return (
     <div className="weatherContainer">
@@ -67,7 +63,6 @@ function WeatherCard() {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              // border: "1px solid red",
             }}
           >
             <span>{location.state.temp.main.feels_like}°C</span>
@@ -87,7 +82,6 @@ function WeatherCard() {
               alignItems: "center",
               textAlign: "center",
               marginLeft: "5px",
-              // border: "1px solid red",
             }}
           >
             <span>{location.state.temp.main.humidity}%</span>

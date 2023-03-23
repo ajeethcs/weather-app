@@ -1,10 +1,15 @@
 body {
   margin: 0;
-  font-family: "Roboto", Arial, Helvetica, sans-serif !important;
+  padding: 0;
+  font-family: 'Manrope',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #43aefc;
+}
 
+::-webkit-scrollbar {
+  display: none;
 }
 
 code {

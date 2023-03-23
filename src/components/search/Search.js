@@ -1,25 +1,20 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Search.css";
 import Suggestions from "./Suggestions";
 import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [location, setLocation] = useState("");
-  const [weatherData, setWeatherData] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
+  const isMounted = useRef(false);
 
   const handleGetCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           getWeatherData(position.coords.latitude, position.coords.longitude);
-          console.log(
-            "location:",
-            position.coords.latitude,
-            position.coords.longitude
-          );
         },
         (error) => {
           console.error(error);
@@ -36,8 +31,6 @@ function Search() {
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=bd25513d09224df4078ad37187738f68&units=metric`
       )
       .then((resp) => {
-        setWeatherData(resp);
-        console.log(resp.data);
         navigate("/currentweather", { state: { temp: resp.data } });
       })
       .catch((err) => {
@@ -50,41 +43,41 @@ function Search() {
   };
 
   useEffect(() => {
-    setSuggestions([]);
-    const delayDebounceFn = setTimeout(() => {
-      axios
-        .get(
-          ` http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=bd25513d09224df4078ad37187738f68`
-        )
-        .then((resp) => {
-          setSuggestions(resp.data);
-          console.log("coordinates:", resp.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 500);
+    if (isMounted.current) {
+      setSuggestions([]);
+      const delayDebounceFn = setTimeout(() => {
+        axios
+          .get(
+            ` http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=bd25513d09224df4078ad37187738f68`
+          )
+          .then((resp) => {
+            setSuggestions(resp.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, 500);
 
-    return () => clearTimeout(delayDebounceFn);
+      return () => clearTimeout(delayDebounceFn);
+    } else {
+      isMounted.current = true;
+    }
   }, [location]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(location);
   };
 
   return (
     <div className="searchContainer">
       <form onSubmit={handleSubmit}>
         <input
-          //   onChange={getName}
           onChange={(e) => setLocation(e.target.value)}
           className="searchBar"
           value={location}
           type={"text"}
           placeholder="Enter city name"
         />
-        {/* <input type="submit" hidden /> */}
       </form>
       {suggestions.length !== 0 && location.length !== 0 ? (
         <div className="suggestions">

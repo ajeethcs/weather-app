@@ -1,28 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./suggestions.css";
 
 function Suggestions(props) {
   let suggestion = props.suggestion;
-  //   let handleOptionClick = props.handleOptionCLick;
-  const array = [1, 2, 3];
-  useEffect(() => {
-    // suggestions.map((city) => {
-    //   {
-    //     console.log("da", city.state);
-    //     <Suggestions
-    //       cityName={city.name}
-    //       state={city?.state}
-    //       countryCode={city.country}
-    //     />;
-    //   }
-    // });
-    // console.log("myr", suggestion);
-    // suggestion.suggestion.map((obj) => {
-    //   console.log(obj);
-    // });
-    // console.log(suggestions);
-  }, []);
 
   const handleClick = (e, key) => {
     props.handleOptionClick(suggestion[key].lat, suggestion[key].lon);
@@ -44,7 +25,6 @@ function Suggestions(props) {
               <div
                 className="line"
                 style={{
-                  // borderBottom: "1px solid lightGray",
                   marginBottom: "2px",
                 }}
               ></div>
